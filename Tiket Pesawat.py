@@ -149,3 +149,53 @@ def lihat_pesanan():
             print("Alamat:", pesanan['alamat'])
             print("Nomor Telepon:", pesanan['no_telp'])
 
+# Fungsi untuk mencetak tiket (menu pembeli)
+def cetak_tiket():
+    print("\nCetak Tiket")
+    if len(pesanan_tiket) == 0:
+        print("Belum ada pesanan tiket.")
+    else:
+        kode_penerbangan = input("Masukkan Kode Penerbangan: ")
+        tiket_ditemukan = False
+        for pesanan in pesanan_tiket:
+            if pesanan['kode_penerbangan'] == kode_penerbangan:
+                print("\nDetail Tiket:")
+                print("Maskapai:", pesanan['maskapai'])
+                print("Kode Penerbangan:", pesanan['kode_penerbangan'])
+                print("Harga Tiket:", pesanan['harga'])
+                print("Jadwal Penerbangan:", pesanan['jadwal'])
+                print("Jumlah Tiket:", pesanan['jumlah_tiket'])
+                print("Nama Pembeli:", pesanan['nama_pembeli'])
+                print("Alamat:", pesanan['alamat'])
+                print("Nomor Telepon:", pesanan['no_telp'])
+                tiket_ditemukan = True
+
+        if not tiket_ditemukan:
+            print("Tiket tidak ditemukan.")
+
+# Fungsi untuk menu pembeli
+def menu_pembeli():
+    while True:
+        print("\n=== MENU PEMBELI ===")
+        print("1. Info Tiket Penerbangan")
+        print("2. Beli Tiket")
+        print("3. Lihat Pesanan")
+        print("4. Cetak Tiket")
+        print("5. Kembali")
+
+        pilihan = input("Masukkan pilihan (1-5): ")
+
+        if pilihan == "1":
+            info_tiket_penerbangan()
+        elif pilihan == '2':
+            beli_tiket()
+        elif pilihan == '3':
+            lihat_pesanan()
+        elif pilihan == '4':
+            cetak_tiket()
+        elif pilihan == '5':
+            break
+        else:
+            print("Pilihan tidak valid. Silakan coba lagi.")
+
+
