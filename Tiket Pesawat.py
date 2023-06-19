@@ -73,4 +73,79 @@ def info_tiket_penerbangan():
             print(f"  Tujuan: {jadwal_penerbangan['tujuan']}")
         print("Kursi Tersedia:", tiket['kursi'])
 
+# Fungsi untuk membeli tiket (menu pembeli)
+def beli_tiket():
+    print("\nBeli Tiket")
+    asal = input("Masukkan Lokasi Pemberangkatan: ")
+    tujuan = input("Masukkan Lokasi Tujuan: ")
+
+
+    tiket_ditemukan = False
+    for tiket in tiket_tersedia:
+        if tiket['jadwal'][0]['asal'] == asal and tiket['jadwal'][0]['tujuan'] == tujuan:
+            print("Maskapai:", tiket['maskapai'])
+            print("Kode Penerbangan:", tiket['kode_penerbangan'])
+            print("Harga Tiket:", tiket['harga'])
+            print("Jadwal Penerbangan:")
+            for jadwal_penerbangan in tiket['jadwal']:
+                print(f"- Jam: {jadwal_penerbangan['jam']}")
+            print("Kursi Tersedia:", tiket['kursi'])
+            print("")
+
+
+            jadwal_terpilih = input("Masukkan Jadwal Penerbangan yang Anda Inginkan: ")
+            jumlah_tiket = int(input("Masukkan Jumlah Tiket yang Ingin Dibeli: "))
+
+
+            kursi_tersedia = tiket['kursi']
+            if jumlah_tiket > kursi_tersedia:
+                print("Jumlah tiket yang diminta melebihi kursi yang tersedia.")
+                return
+
+
+            nama_pembeli = input("Masukkan Nama Pembeli: ")
+            alamat = input("Masukkan Alamat: ")
+            no_telp = input("Masukkan Nomor Telepon: ")
+
+
+            pesanan = {
+                'maskapai': tiket['maskapai'],
+                'kode_penerbangan': tiket['kode_penerbangan'],
+                'harga': tiket['harga'],
+                'jadwal': jadwal_terpilih,
+                'jumlah_tiket': jumlah_tiket,
+                'nama_pembeli': nama_pembeli,
+                'alamat': alamat,
+                'no_telp': no_telp
+            }
+
+
+            pesanan_tiket.append(pesanan)
+
+
+            tiket['kursi'] -= jumlah_tiket
+            tiket_ditemukan = True
+            print("Pemesanan tiket berhasil, Silahkan melanjutkan pembayaran di kasir")
+
+
+    if not tiket_ditemukan:
+        print("Tidak ada tiket tersedia untuk rute tersebut.")
+
+
+# Fungsi untuk melihat pesanan (menu pembeli)
+def lihat_pesanan():
+    print("\nLihat Pesanan")
+    if len(pesanan_tiket) == 0:
+        print("Belum ada pesanan tiket.")
+    else:
+        for pesanan in pesanan_tiket:
+            print("\nDetail Pesanan:")
+            print("Maskapai:", pesanan['maskapai'])
+            print("Kode Penerbangan:", pesanan['kode_penerbangan'])
+            print("Harga Tiket:", pesanan['harga'])
+            print("Jadwal Penerbangan:", pesanan['jadwal'])
+            print("Jumlah Tiket:", pesanan['jumlah_tiket'])
+            print("Nama Pembeli:", pesanan['nama_pembeli'])
+            print("Alamat:", pesanan['alamat'])
+            print("Nomor Telepon:", pesanan['no_telp'])
 
