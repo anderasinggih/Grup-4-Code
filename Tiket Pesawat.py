@@ -198,6 +198,43 @@ def menu_pembeli():
         else:
             print("Pilihan tidak valid. Silakan coba lagi.")
 
+# Fungsi untuk menu admin
+def menu_admin():
+    while True:
+        print("\n=== MENU ADMIN ===")
+        print("1. Info Tiket Penerbangan")
+        print("2. Lihat Pesanan")
+        print("3. Kembali")
+
+        pilihan = input("Masukkan pilihan (1-3): ")
+
+        
+        if pilihan == '1':
+            lihat_tiket_admin()
+        elif pilihan == '2':
+            lihat_pesanan_admin()
+        elif pilihan == '3':
+            break
+        else:
+            print("Pilihan tidak valid. Silakan coba lagi.")
+
+
+# Fungsi untuk melihat tiket (menu admin)
+def lihat_tiket_admin():
+    print("\nInfo Tiket Penerbangan")
+    for tiket in tiket_tersedia:
+        print("\nDetail Tiket:")
+        print("Maskapai:", tiket['maskapai'])
+        print("Kode Penerbangan:", tiket['kode_penerbangan'])
+        print("Harga Tiket:", tiket['harga'])
+        print("Jadwal Penerbangan:")
+        for jadwal_penerbangan in tiket['jadwal']:
+            print(f"- Jam: {jadwal_penerbangan['jam']}")
+            print(f"  Asal: {jadwal_penerbangan['asal']}")
+            print(f"  Tujuan: {jadwal_penerbangan['tujuan']}")
+        print("Kursi Tersedia:", tiket['kursi'])
+
+
 
 
 
